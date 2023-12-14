@@ -1,0 +1,56 @@
+package main
+
+import "strings"
+
+templ visited(v string) {
+  <ul>
+  for _, country := range strings.Split(v, ",") {
+    <li>{ country }</li>
+  }
+  </ul>
+}
+
+templ form() {
+	<form action="/" method="POST">
+        <div>
+          <label for="country">Which country did you just visit?</label>
+          <input name="country" id="country"/>
+          <button for="country" type="submit">Submit</button>
+        </div>
+	</form>
+}
+
+templ page(v string) {
+	<html>
+		<head>
+			<meta charset="UTF-8"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+			<title>Polarstomps</title>
+			<link rel="stylesheet" href="/assets/bulma.min.css"/>
+			<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png"/>
+			<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png"/>
+			<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png"/>
+			<link rel="manifest" href="/assets/favicon/site.webmanifest"/>
+		</head>
+		<body class="bg-gray-100">
+			<header class="hero is-primary">
+				<div class="hero-body">
+					<div class="container">
+						<h1 class="title">Polarstomps</h1>
+					</div>
+				</div>
+			</header>
+			<section class="section">
+				<div class="container">
+					<div class="columns is-centered">
+						<div class="column is-half">
+							@form()
+                            @visited(v)
+                            <button onclick="window.location.href='https://bit.ly/3BlS71b';">Order Trip Photo Album</button>
+						</div>
+					</div>
+				</div>
+			</section>
+		</body>
+	</html>
+}
