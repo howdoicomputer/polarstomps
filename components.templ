@@ -13,7 +13,7 @@ templ visited(v string) {
 templ form() {
 	<form action="/" method="POST">
         <div>
-          <label for="country">Which country did you just visit?</label>
+          <label for="country">Enter patient notes</label>
           <input name="country" id="country"/>
           <button for="country" type="submit">Submit</button>
         </div>
@@ -36,7 +36,7 @@ templ page(v string) {
 			<header class="hero is-success">
 				<div class="hero-body">
 					<div class="container">
-						<h1 class="title">Polarstomps</h1>
+						<h1 class="title">A-Bridge</h1>
 					</div>
 				</div>
 			</header>
@@ -46,7 +46,7 @@ templ page(v string) {
 						<div class="column is-half">
 							@form()
                             @visited(v)
-                            <button onclick="window.location.href='https://bit.ly/3BlS71b';">Order Trip Photo Album</button>
+                            <button onclick="window.location.href='https://bit.ly/3BlS71b';">Abridge patient notes</button>
 						</div>
 					</div>
 				</div>
