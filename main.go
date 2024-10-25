@@ -2,10 +2,11 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"net/http"
 	"strings"
 	"time"
+	"log/slog"
+	"os"
 
 	"github.com/alexedwards/scs/v2"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
@@ -30,7 +31,6 @@ func postHandler(w http.ResponseWriter, r *http.Request) {
 			currentVisited += fmt.Sprintf(",%s", country)
 		}
 
-		log.Print(currentVisited)
 		sessionManager.Put(r.Context(), "visited", currentVisited)
 	}
 
@@ -38,6 +38,10 @@ func postHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	// Initialized a structured logger
+	//
+	logger := slog.New(slog.NewJSONHandler(os.Stdout, nil))
+
 	// Initialize the session.
 	//
 	sessionManager = scs.New()
@@ -52,7 +56,9 @@ func main() {
 			postHandler(w, r)
 			return
 		}
-		log.Print("Received request")
+
+		logger.Info(fmt.Sprintf("Recevied request from %s", r.RemoteAddr))
+
 		getHandler(w, r)
 	})
 
@@ -70,8 +76,8 @@ func main() {
 
 	// Start the server.
 	//
-	fmt.Println("listening on :8080")
+	logger.Info("listening on :8080")
 	if err := http.ListenAndServe(":8080", muxWithSessionMiddleware); err != nil {
-		log.Printf("error listening: %v", err)
+		logger.Error(fmt.Sprintf("error listening: %v", err))
 	}
 }
