@@ -47,11 +47,12 @@ func main() {
 	sessionManager = scs.New()
 	sessionManager.Lifetime = 24 * time.Hour
 
-	mux := http.NewServeMux()
+	external := http.NewServeMux()
+	internal := http.NewServeMux()
 
 	// Handle POST and GET requests.
 	//
-	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+	external.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		if r.Method == http.MethodPost {
 			postHandler(w, r)
 			return
@@ -62,22 +63,29 @@ func main() {
 		getHandler(w, r)
 	})
 
+	internal.HandleFunc("/healthz", func(w http.ResponseWriter, r *http.Request) {
+		getHandler(w, r)
+	})
+
 	// Include the static content.
 	//
-	mux.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
+	external.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
 
 	// Add metrics endpoint.
 	//
-	mux.Handle("/metrics", promhttp.Handler())
+	internal.Handle("/metrics", promhttp.Handler())
 
 	// Add the middleware.
 	//
-	muxWithSessionMiddleware := sessionManager.LoadAndSave(mux)
+	externalWithSessionMiddleware := sessionManager.LoadAndSave(external)
+	internalWithSessionMiddleware := sessionManager.LoadAndSave(internal)
 
 	// Start the server.
 	//
-	logger.Info("listening on :8080")
-	if err := http.ListenAndServe(":8080", muxWithSessionMiddleware); err != nil {
-		logger.Error(fmt.Sprintf("error listening: %v", err))
-	}
+	logger.Info("external exposed on :8080")
+	go http.ListenAndServe(":8080", externalWithSessionMiddleware)
+	logger.Info("metrics and health exposed on :9090")
+	go http.ListenAndServe(":9090", internalWithSessionMiddleware)
+
+	select {}
 }
