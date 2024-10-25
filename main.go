@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/alexedwards/scs/v2"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
 var sessionManager *scs.SessionManager
@@ -38,12 +39,14 @@ func postHandler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	// Initialize the session.
+	//
 	sessionManager = scs.New()
 	sessionManager.Lifetime = 24 * time.Hour
 
 	mux := http.NewServeMux()
 
 	// Handle POST and GET requests.
+	//
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		if r.Method == http.MethodPost {
 			postHandler(w, r)
@@ -54,12 +57,19 @@ func main() {
 	})
 
 	// Include the static content.
+	//
 	mux.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
 
+	// Add metrics endpoint.
+	//
+	mux.Handle("/metrics", promhttp.Handler())
+
 	// Add the middleware.
+	//
 	muxWithSessionMiddleware := sessionManager.LoadAndSave(mux)
 
 	// Start the server.
+	//
 	fmt.Println("listening on :8080")
 	if err := http.ListenAndServe(":8080", muxWithSessionMiddleware); err != nil {
 		log.Printf("error listening: %v", err)

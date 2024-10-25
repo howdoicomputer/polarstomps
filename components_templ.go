@@ -112,7 +112,7 @@ func page(v string) templ.Component {
 			templ_7745c5c3_Var4 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<html><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><title>Polarstomps</title><link rel=\"stylesheet\" href=\"/assets/bulma.min.css\"><link rel=\"apple-touch-icon\" sizes=\"180x180\" href=\"/assets/favicon/apple-touch-icon.png\"><link rel=\"icon\" type=\"image/png\" sizes=\"32x32\" href=\"/assets/favicon/favicon-32x32.png\"><link rel=\"icon\" type=\"image/png\" sizes=\"16x16\" href=\"/assets/favicon/favicon-16x16.png\"><link rel=\"manifest\" href=\"/assets/favicon/site.webmanifest\"></head><body class=\"bg-gray-100\"><header class=\"hero is-success\"><div class=\"hero-body\"><div class=\"container\"><h1 class=\"title\">A-Bridge</h1></div></div></header><section class=\"section\"><div class=\"container\"><div class=\"columns is-centered\"><div class=\"column is-half\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<html><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><title>A-Bridge</title><link rel=\"stylesheet\" href=\"/assets/bulma.min.css\"><link rel=\"apple-touch-icon\" sizes=\"180x180\" href=\"/assets/favicon/apple-touch-icon.png\"><link rel=\"icon\" type=\"image/png\" sizes=\"32x32\" href=\"/assets/favicon/favicon-32x32.png\"><link rel=\"icon\" type=\"image/png\" sizes=\"16x16\" href=\"/assets/favicon/favicon-16x16.png\"><link rel=\"manifest\" href=\"/assets/favicon/site.webmanifest\"></head><body class=\"bg-gray-100\"><header class=\"hero is-success\"><div class=\"hero-body\"><div class=\"container\"><h1 class=\"title\">A-Bridge</h1></div></div></header><section class=\"section\"><div class=\"container\"><div class=\"columns is-centered\"><p>Hello, Abridge! This application is running on an autopiloted, VPC-native Kubernetes/GKE cluster in GCP. The node pool (which is managed by Google) is within a private subnet.<br><br>Everything is Terraformed! Terragrunt is used to make things more DRY!<br><br>The ArgoCD/Kubernetes manifests for this application exist <a href=\"https://github.com/howdoicomputer/polarstomps-argo-gcp\">here</a><br>The Terraform repo exists <a href=\"https://github.com/howdoicomputer/polarstomps-infra-gcp\">here</a><br><br>Why does the name \"polarstomps\" show up so much? Well, it's a shared name from a previous project that I was moving over to GCP/GKE but I decided to be cheeky and make a little Abridge competitor ;)</p><div class=\"column is-half\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -124,7 +124,7 @@ func page(v string) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<button onclick=\"window.location.href=&#39;https://bit.ly/3BlS71b&#39;;\">Order Trip Photo Album</button></div></div></div></section></body></html>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<button onclick=\"window.location.href=&#39;https://bit.ly/3BlS71b&#39;;\">Abridge patient notes</button></div></div></div></section></body></html>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

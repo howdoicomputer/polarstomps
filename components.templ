@@ -25,7 +25,7 @@ templ page(v string) {
 		<head>
 			<meta charset="UTF-8"/>
 			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-			<title>Polarstomps</title>
+			<title>A-Bridge</title>
 			<link rel="stylesheet" href="/assets/bulma.min.css"/>
 			<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png"/>
 			<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png"/>
@@ -43,6 +43,20 @@ templ page(v string) {
 			<section class="section">
 				<div class="container">
 					<div class="columns is-centered">
+                        <p>
+                          Hello, Abridge! This application is running on an autopiloted, VPC-native Kubernetes/GKE cluster in GCP.
+                          The node pool (which is managed by Google) is within a private subnet.
+                          <br><br>
+                          Everything is Terraformed! Terragrunt is used to make things more DRY!
+                          <br><br>
+                          The ArgoCD/Kubernetes manifests for this application exist <a href="https://github.com/howdoicomputer/polarstomps-argo-gcp">here</a>
+                          <br>
+                          The Terraform repo exists <a href="https://github.com/howdoicomputer/polarstomps-infra-gcp">here</a>
+                          <br><br>
+                          Why does the name "polarstomps" show up so much? Well, it's a shared name from a previous
+                          project that I was moving over to GCP/GKE but I decided to be cheeky and make a little Abridge
+                          competitor ;)
+                        </p>
 						<div class="column is-half">
 							@form()
                             @visited(v)
