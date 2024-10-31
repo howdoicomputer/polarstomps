@@ -90,7 +90,7 @@ func main() {
 	// Create a GCS client
 	//
 	ctx := context.Background()
-	client, err := storage.NewClient(ctx)
+	client, err := storage.NewClient(ctx, clientOptions...)
 	if err != nil {
 		logger.Error(
 			"Error creating GCS client",
@@ -109,7 +109,7 @@ func main() {
 	// bucket names.
 	//
 	bucketName := os.Getenv("GCS_EXAMPLE_BUCKET_NAME")
-	bucket := client.Bucket(bucketName, clientOptions...)
+	bucket := client.Bucket(bucketName)
 
 	var names []string
 	iter := bucket.Objects(ctx, nil)
