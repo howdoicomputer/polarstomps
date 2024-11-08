@@ -68,7 +68,7 @@ func main() {
 	// Let's spit out of a version right away to help
 	// with debugging.
 	//
-	logger.Info("Running v22")
+	logger.Info("Running v25")
 
 	redisHost := os.Getenv("REDIS_HOST")
 	redisPort := os.Getenv("REDIS_PORT")
