@@ -6,6 +6,7 @@ Polarstomps is demo web application written in the [Templ](https://templ.guide/)
 
 * Redis
 * GCS (or local emulation)
+* Docker (if emulating GCS locally)
 
 ## Redis
 
@@ -13,7 +14,7 @@ This web application will write to Redis as an example of communicating with a d
 
 ## GCS
 
-This web application will read a list of objects from a GCS bucket. This can be done locally using a GCS emulation server. Run `make gcs-auth` and look at `.envrc`.
+This web application will read a list of objects from a GCS bucket. This can be done locally using a GCS emulation server. Run `make gcs-emu` and look at `.envrc`.
 
 # Running
 
